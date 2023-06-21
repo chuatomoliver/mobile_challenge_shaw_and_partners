@@ -28,4 +28,27 @@ class DogAPI {
     }
     return listDogBreed;
   }
+
+  Future<List<String>> getDogBreedImages(DogBreedModel dogBreedModel) async {
+    List<String> listDogBreedImages = [];
+    try {
+      Dio dio = Dio();
+      Response response = await dio.get('https://dog.ceo/api/breed/${dogBreedModel.breed}/images');
+
+      if (response.statusCode == 200) {
+       // Map<String, dynamic> message = response.data['message'];
+        listDogBreedImages =  List<String>.from(response.data['message']);
+
+        for (var element in listDogBreedImages) {
+          print(element);
+        }
+
+      } else {
+        throw 'Error: ${response.statusCode}';
+      }
+    } catch (e) {
+      print('Error: $e');
+    }
+    return listDogBreedImages;
+  }
 }

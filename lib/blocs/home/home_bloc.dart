@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:mobile_challenge_shaw_and_partners/data/dog_data.dart';
 import 'package:mobile_challenge_shaw_and_partners/network/dog_api.dart';
 
 import '../../models/dog_model.dart';
@@ -19,6 +20,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeInitialEvent>(homeInitialEvent);
 
     on<HomeLoadSuccessEvent>(homeLoadSuccessEvent);
+
+    on<HomeDogBreedCardClickedEvent>(homeDogBreedCardClickedEvent);
   }
 
   FutureOr<void> homeInitialEvent(HomeInitialEvent event, Emitter<HomeState> emit) async {}
@@ -26,5 +29,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> homeLoadSuccessEvent(HomeLoadSuccessEvent event, Emitter<HomeState> emit) async {
     List<DogBreedModel> listDogBreeds = await DogAPI().getAllDogBreed();
     emit(HomeLoadSuccessState(listDogBreeds: listDogBreeds));
+  }
+
+  FutureOr<void> homeDogBreedCardClickedEvent(HomeDogBreedCardClickedEvent event, Emitter<HomeState> emit) {
+    DogData.selectedDogBreed = event.clickedDog;
+    emit(HomeNavigateToBreedImagesActionState());
   }
 }
