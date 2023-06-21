@@ -11,23 +11,37 @@ class DogBreedTileWidget extends StatelessWidget {
     return Card(
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              "${dogBreedModel.breed} ",
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 18.0,
-              ),
+            Image.asset(
+              'assets/images/dog_cartoon_2.png',
+              width: 80,
+              height: 100,
+              fit: BoxFit.fill,
             ),
-            for (var item in dogBreedModel.listBreedTypes)
-              Text(
-                item,
-                style: const TextStyle(
-                  fontSize: 18.0,
+            const SizedBox(width: 10.0),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "${dogBreedModel.breed} ",
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                  ),
                 ),
-              ),
+                const SizedBox(height: 10.0),
+                for (var item in dogBreedModel.listBreedTypes)
+                  Text(
+                    item,
+                    style: const TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+              ],
+            ),
           ],
         ),
       ),
