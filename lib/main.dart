@@ -14,7 +14,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "montserrat_regular",
-        primaryColor: Colors.teal,
+        colorScheme: const ColorScheme.light(
+          primary: Colors.teal,
+          secondary: Colors.green,
+        ),
       ),
       home: const HomeScreen(),
     );
