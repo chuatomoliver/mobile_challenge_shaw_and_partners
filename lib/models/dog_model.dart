@@ -1,11 +1,7 @@
 class DogBreedModel {
   final String breed;
   final List<String> listBreedTypes;
+   List<String> listImgUrl = [];
 
-  DogBreedModel({required this.breed, required this.listBreedTypes});
-
-  factory DogBreedModel.fromJson(Map<String, dynamic> json) => DogBreedModel(
-        breed: json[""],
-    listBreedTypes: json['breedTypes'],
-      );
+  DogBreedModel({required this.breed, required this.listBreedTypes, required this.listImgUrl});
 }

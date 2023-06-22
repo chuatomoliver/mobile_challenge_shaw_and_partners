@@ -17,7 +17,7 @@ class DogAPI {
         /// Convert return to object
         for (var breed in properties) {
           List<String> listBreedTypes =  List<String>.from(message[breed]);
-          listDogBreed.add(DogBreedModel(breed: breed, listBreedTypes: listBreedTypes));
+          listDogBreed.add(DogBreedModel(breed: breed, listBreedTypes: listBreedTypes, listImgUrl: [],));
         }
 
       } else {
