@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mobile_challenge_shaw_and_partners/blocs/home/home_bloc.dart';
-import 'package:mobile_challenge_shaw_and_partners/network/dog_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_challenge_shaw_and_partners/screens/breed_images/breed_images_screen.dart';
 import 'package:mobile_challenge_shaw_and_partners/screens/favorites/favorites_screen.dart';
@@ -39,16 +38,16 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           actions: [
-            IconButton(
-                onPressed: () {
-                  homeBloc.add(HomeFavoriteClickedEvent());
-                },
-                padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                icon: const Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                  size: 30.0,
-                ))
+            ElevatedButton(
+              style: OutlinedButton.styleFrom(
+
+                padding: const EdgeInsets.symmetric(horizontal: 10.0), // Set padding to zero
+              ),
+              onPressed: () {
+                homeBloc.add(HomeFavoriteClickedEvent());
+              },
+              child: const Text("Go to Favorites"),
+            )
           ],
         ),
         body: BlocConsumer<HomeBloc, HomeState>(
@@ -66,7 +65,6 @@ class _HomeScreenState extends State<HomeScreen> {
             switch (state.runtimeType) {
               case HomeLoadSuccessState:
                 final successState = state as HomeLoadSuccessState;
-                print(successState.listDogBreeds.length);
                 return Container(
                   margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
                   child: ListView.builder(
