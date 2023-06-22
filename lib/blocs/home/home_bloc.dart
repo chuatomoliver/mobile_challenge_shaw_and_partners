@@ -22,6 +22,10 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeLoadSuccessEvent>(homeLoadSuccessEvent);
 
     on<HomeDogBreedCardClickedEvent>(homeDogBreedCardClickedEvent);
+
+    on<HomeFavoriteClickedEvent>(homeFavoriteClickedEvent);
+
+    on<HomeDogCardFavoriteClickedEvent>(homeDogCardFavoriteClickedEvent);
   }
 
   FutureOr<void> homeInitialEvent(HomeInitialEvent event, Emitter<HomeState> emit) async {}
@@ -34,5 +38,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> homeDogBreedCardClickedEvent(HomeDogBreedCardClickedEvent event, Emitter<HomeState> emit) {
     DogData.selectedDogBreed = event.clickedDog;
     emit(HomeNavigateToBreedImagesActionState());
+  }
+
+  FutureOr<void> homeFavoriteClickedEvent(HomeFavoriteClickedEvent event, Emitter<HomeState> emit) {
+    emit(HomeNavigateToFavoritesActionState());
+  }
+
+  FutureOr<void> homeDogCardFavoriteClickedEvent(HomeDogCardFavoriteClickedEvent event, Emitter<HomeState> emit) {
+    DogData.listFavorites.add(event.clickedDog);
+    print("List Favorites: ${DogData.listFavorites.length}");
   }
 }

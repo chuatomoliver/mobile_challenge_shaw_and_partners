@@ -18,3 +18,4 @@ class HomeLoadSuccessState extends HomeState {
 
 /// HomeActionState
 class HomeNavigateToBreedImagesActionState extends HomeActionState {}
+class HomeNavigateToFavoritesActionState extends HomeActionState {}

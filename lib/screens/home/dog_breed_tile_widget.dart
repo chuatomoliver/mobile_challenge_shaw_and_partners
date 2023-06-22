@@ -18,9 +18,11 @@ class DogBreedTileWidget extends StatelessWidget {
           homeBloc.add(HomeDogBreedCardClickedEvent(clickedDog: dogBreedModel));
         },
         child: Container(
-          margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0),
+          //color: Colors.red,
+          margin: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Image.asset(
                 'assets/images/dog_cartoon_2.png',
@@ -28,10 +30,10 @@ class DogBreedTileWidget extends StatelessWidget {
                 height: 100,
                 fit: BoxFit.fill,
               ),
-              const SizedBox(width: 10.0),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
+
                 children: [
                   Text(
                     "${dogBreedModel.breed} ",
@@ -50,6 +52,11 @@ class DogBreedTileWidget extends StatelessWidget {
                     ),
                 ],
               ),
+              IconButton(onPressed: (){
+                homeBloc.add(HomeDogCardFavoriteClickedEvent(clickedDog: dogBreedModel));
+              }, icon: Icon(Icons.favorite_border)),
+
+
             ],
           ),
         ),

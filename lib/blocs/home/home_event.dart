@@ -12,3 +12,11 @@ class HomeDogBreedCardClickedEvent extends HomeEvent {
 
   HomeDogBreedCardClickedEvent({required this.clickedDog});
 }
+
+class HomeFavoriteClickedEvent extends HomeEvent {}
+
+class HomeDogCardFavoriteClickedEvent extends HomeEvent {
+  final DogBreedModel clickedDog;
+
+  HomeDogCardFavoriteClickedEvent({required this.clickedDog});
+}

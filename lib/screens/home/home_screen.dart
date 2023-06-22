@@ -3,6 +3,7 @@ import 'package:mobile_challenge_shaw_and_partners/blocs/home/home_bloc.dart';
 import 'package:mobile_challenge_shaw_and_partners/network/dog_api.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile_challenge_shaw_and_partners/screens/breed_images/breed_images_screen.dart';
+import 'package:mobile_challenge_shaw_and_partners/screens/favorites/favorites_screen.dart';
 
 import 'dog_breed_tile_widget.dart';
 
@@ -37,6 +38,18 @@ class _HomeScreenState extends State<HomeScreen> {
               fontSize: 22.0,
             ),
           ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  homeBloc.add(HomeFavoriteClickedEvent());
+                },
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                icon: const Icon(
+                  Icons.favorite,
+                  color: Colors.red,
+                  size: 30.0,
+                ))
+          ],
         ),
         body: BlocConsumer<HomeBloc, HomeState>(
           bloc: homeBloc,
@@ -45,6 +58,8 @@ class _HomeScreenState extends State<HomeScreen> {
           listener: (context, state) {
             if (state is HomeNavigateToBreedImagesActionState) {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const BreedImagesScreen()));
+            } else if (state is HomeNavigateToFavoritesActionState) {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoritesScreen()));
             }
           },
           builder: (context, state) {
